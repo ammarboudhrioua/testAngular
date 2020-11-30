@@ -1,0 +1,28 @@
+<div class="row mtç-5 mt-5">
+    <div class="offset-3 col-sm-6">
+        <form [formGroup]="publicationForm" (ngSubmit)="submitForm()" class="mt-5">
+            <div class="form-group ">
+                <input formControlName="title" name="titre" type="text" class="form-control " id="titre"
+                    placeholder="titre">
+                    <small class="text-danger" *ngIf="submitted && publicationForm.controls.titte.hasError('required')">Title is required.</small> 
+                    <small class="text-danger" *ngIf="submitted && publicationForm.controls.title.hasError('minLength')">Title is too short.</small> 
+                    
+            </div>
+            <div class="form-group">
+                <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    placeholder="Description"></textarea>
+                    <small class="text-danger" *ngIf="submitted && publicationForm.controls.description.hasError('required')">Title is required.</small> 
+                    <small class="text-danger" *ngIf="submitted && publicationForm.controls.description.hasError('minLength')">Title is required.</small> 
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-success btn-block">Modifier</button>
+                </div>
+                <div class="col-sm-6">
+                    <a routerLink="/blog" class="btn btn-info btn-block">Retoure</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="offset-2 col-8">
+        <div class="mx-auto" style="width: 200px;">
+            <a routerLink="/blog/new_blog" class="btn btn-primary">Ajouter</a>
+        </div>
+        <div>
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="btn-secondary">
+                    <th>catégorie</th>
+                    <th>Titre</th>
+                    <th>Descrition</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+
+                </thead>
+                <tr *ngFor="let publication of publications;;let i=index">
+                    <td>{{publication.categorie}}</td>
+                    <td>{{publication.title}}</td>
+                    <td>{{publication.description}}</td>
+                    <td>{{publication.date | date:'medium'}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a [routerLink]="['/blog/update_blog/',i]"
+                                    class="btn btn-success btn-block mr-2">Modifier</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <button (click)='deleteBlog(i)' type="button"
+                                    class="btn btn-danger btn-block">Supprimer</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<
+
+<!-- <div *ngFor="let publication of publications;;let i=index" class="card" style="width: 18rem;">
+    <div class="card-header">
+        {{publication.categorie}}
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <h1>{{publication.title}}</h1><br>
+            <p>{{publication.description}}</p>
+        </li>
+        <li class="list-group-item">{{publication.date | date}}</li>
+    </ul>
+</div> -->
