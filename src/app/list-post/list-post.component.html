@@ -1,9 +1,9 @@
 <div class="row">
     <div class="offset-2 col-8">
         <div class="mx-auto" style="width: 200px;">
-            <a routerLink="/blog/new_blog" class="btn btn-primary">Ajouter</a>
+            <a *ngIf="auth()" routerLink="/blog/new_blog" class="btn btn-primary">Ajouter</a>
         </div>
-        <div>
+        <!-- <div>
             <table class="table table-bordered table-striped table-hover">
                 <thead class="btn-secondary">
                     <th>catégorie</th>
@@ -32,35 +32,36 @@
                     </td>
                 </tr>
             </table>
+        </div> -->
+        <div *ngFor="let publication of publications;;let i=index">
+            <div class="card mb-1">
+                <div class="card-header">
+                    {{publication.date | date:'medium'}}
+                </div>
+                <div class="card-body row">
+                    <div class="col-8">
+                        <h2>{{publication.titre}}</h2>
+             
+                        <p>{{publication.description}}</p>
+<p *ngIf="publication.votes">{{calcu(publication)}}% of {{publication.votes.length}} voted Yes</p>
+                    </div>
+                    <div class="col-2">
+                        <div *ngIf="affvote(publication)&&auth()">
+                            <button  type="button" (click)="yesBlog(publication._id)" class="btn btn-danger btn-block">Yes</button>
+                            <button   type="button" (click)="noBlog(publication._id)"class="btn btn-danger btn-block">No</button>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <mat-progress-spinner
+                        value="{{calcu(publication)}}" mode="determinate"></mat-progress-spinner>
+                    
+                    </div>
+                </div>
+                <!-- <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: calcu(publication)%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">25%</div>
+                  </div> -->
+                  <!-- <mat-progress-bar mode="determinate" value="40"></mat-progress-bar> -->
+            </div>
         </div>
     </div>
 </div>
-
-
-<div><h1 class="text-center"><------------------------UNFINISHED ------------------------></h1></div>
-<div class="container">
-    <div class="row row-cols-3" >
-    
-      <div class="col"  *ngFor="let publication of publications;;let i=index">
-        <div class="alert alert-primary">  <h1>{{publication.title}}</h1><br></div>
-        <p>{{publication.description}}</p>
-        <div class="bg-dark text-white"><p>{{publication.date | date}}</p></div>
-        <div class="row">
-            <div class="col-sm-6">
-                <a [routerLink]="['/blog/update_blog/',i]"
-                    class="btn btn-success btn-block mr-2">Modifier</a>
-            </div>
-            <div class="col-sm-6">
-                <button (click)='deleteBlog(i)' type="button"
-                    class="btn btn-danger btn-block">Supprimer</button>
-            </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="mx-auto d-block">
-            <a routerLink="/blog/new_blog" class="btn btn-primary">Ajouter</a>
-        </div>
-      </div>
-   
-    </div>
-  </div>

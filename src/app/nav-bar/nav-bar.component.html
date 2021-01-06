@@ -1,0 +1,14 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a routerLink="blog" class="navbar-brand btn text-white">Sondage</a>
+        <ul class="navbar-nav mr-auto">
+         
+          </ul>
+    <form class="form-inline">
+        <h1 class="text-hide" style="background-image: url('...');">Bootstrap</h1>
+        <a *ngIf="!auth()" routerLink="register" class="btn btn-success text-white my-2 my-sm-0 mr-2" type="submit" >Sign Up </a>
+        <a *ngIf="!auth()" routerLink="login"  class="btn  btn-danger text-white my-2 my-sm-0 mr-2" type="submit">Sign In</a>
+        <button *ngIf="auth()"(click)="logout()"  class="btn  btn-danger text-white my-2 my-sm-0" type="submit">Log out</button>
+
+    </form>
+  </nav>
+

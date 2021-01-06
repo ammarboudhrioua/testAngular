@@ -1,34 +1,29 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
+  baseUrl="/api";
+  constructor(private  httpClient: HttpClient) { }
 
-  constructor() { }
-
-  addBlog(publication) {
-    const publications = JSON.parse(localStorage.getItem("publications")) || [];
-    publications.push(publication)
-    localStorage.setItem("publications", JSON.stringify(publications))
+  addBlog(publication) {  
+      this.httpClient.post<any>(this.baseUrl+'sujets/addSujet',publication).subscribe();
   }
   listPublications() {
-    const publications = JSON.parse(localStorage.getItem("publications")) || [];
-    return publications;
+    const sujets= this.httpClient.get(this.baseUrl+'sujets/allSujets');
+    return sujets;
   }
   getPublication(i) {
     const publications= JSON.parse(localStorage.getItem("publications")) || [];
     return publications[i]
   }
-  updatePublication(publication, i) {
-    const publications = JSON.parse(localStorage.getItem("publications")) || [];
-    publications.splice(i, 1, publication)
-    localStorage.setItem("publications", JSON.stringify(publications))
-  }
-  deletePublication(publication, i) {
-    const publications = JSON.parse(localStorage.getItem("publications")) || [];
-    publications.splice(i, 1);
-    localStorage.setItem("publications", JSON.stringify(publications))
+ 
+  addvote(publication, id) {
+    
+    return  this.httpClient.post<any>(this.baseUrl+'sujets/addVote/'+id,publication)
+    
+   
   }
  
 }

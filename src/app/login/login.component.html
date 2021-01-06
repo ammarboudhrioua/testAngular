@@ -1,0 +1,26 @@
+<div style="height: 200px;"></div>
+<div class="row">
+    <div class="offset-6 col-4 card shadow">
+        <div></div>
+        <div class="card-body">
+            <form [formGroup]="loginForm">
+                <div class="input-group">
+                  <input type="text" formControlName="email" class="border btn btn-lg btn-block " placeholder="Email">
+                </div>
+                <br>
+                <div class="input-group">
+                  <input type="password" formControlName="password" class="border btn btn-lg btn-block " placeholder="Mot de passe">
+                </div>
+                <br>
+                <button (click)="submitForm()" type="button"
+                  class="mb-1 btn btn-lg text-white btn-primary btn-block">Connecter</button>
+                <br>
+              </form>
+        </div>
+        <div class="card-footer">
+            <a href="register" type="button"
+                  class="mb-1 offset-md-4  btn btn-lg text-white btn-success">Créer un compte</a>
+        </div>
+    </div>
+</div>
+ 

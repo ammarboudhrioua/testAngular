@@ -16,8 +16,7 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.publicationForm = new FormGroup({
-      categorie: new FormControl('',Validators.required),
-      title: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      titre: new FormControl('', [Validators.required, Validators.minLength(3)]),
       description: new FormControl('', [Validators.required]),
       date: new FormControl(Date.now())
     })
@@ -26,8 +25,7 @@ export class AddPostComponent implements OnInit {
     if (this.publicationForm.invalid) {
       return;
     }
-    this.blogService.addBlog(this.publicationForm.value);
+    this.blogService.addBlog(this.publicationForm.value)
     this.router.navigateByUrl('/blog');
-
   }
 }
